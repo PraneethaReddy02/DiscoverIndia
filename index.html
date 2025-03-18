@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover India - Your Way</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #0078D7;
+      color: white;
+      padding: 10px 20px;
+    }
+    header img {
+      height: 50px;
+      margin-right: 20px;
+    }
+    main {
+      padding: 20px;
+    }
+    select, input, textarea {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0078D7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+    .results {
+      margin-top: 20px;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .section {
+      margin-top: 40px;
+    }
+    .video-section h2,
+    .contact-section h2 {
+      text-align: center;
+    }
+    iframe {
+      display: block;
+      margin: 0 auto;
+    }
+    .contact-section form {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+  </style>
+  <script>
+    function showResults(){
+      var city = document.getElementById('city').value;
+      var budget = document.getElementById('budget').value;
+      var transport = document.getElementById('transport').value;
+      
+      var result = `<h3>Travel Plan for ${city}</h3>`;
+      var sightseeing = '';
+      var dishes = '';
+      var restaurants = '';
+      var transportCost = '';
+      
+      if(city === 'Delhi'){
+        sightseeing = 'Red Fort, India Gate, Qutub Minar';
+        if(budget === 'Low'){
+          dishes = 'Chaat, Parathas';
+          restaurants = 'Street Vendors (₹200)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Butter Chicken, Biryani';
+          restaurants = "Karim's (₹800)";
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        } else{
+          dishes = 'Gourmet Indian Dishes';
+          restaurants = 'Bukhara (₹2500)';
+          transportCost = transport === 'Public Transportation' ? '₹200' : transport === 'Cabs' ? '₹800' : '₹500 (fuel)';
+        }
+      } else if(city === 'Mumbai'){
+        sightseeing = 'Gateway of India, Marine Drive, Juhu Beach';
+        if(budget === 'Low'){
+          dishes = 'Vada Pav, Misal Pav';
+          restaurants = 'Street Vendors (₹150)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Pav Bhaji, Bombay Sandwich';
+          restaurants = 'Leopold Cafe (₹1500)';
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        } else{
+          dishes = 'Gourmet Seafood';
+          restaurants = 'Trishna (₹2000)';
+          transportCost = transport === 'Public Transportation' ? '₹200' : transport === 'Cabs' ? '₹800' : '₹500 (fuel)';
+        }
+      } else if(city === 'Kolkata'){
+        sightseeing = 'Victoria Memorial, Howrah Bridge, Marble Palace';
+        if(budget === 'Low'){
+          dishes = 'Rolls, Jhalmuri';
+          restaurants = 'Local eateries (₹150)';
+          transportCost = transport === 'Public Transportation' ? '₹40' : transport === 'Cabs' ? '₹250' : '₹80 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Macher Jhol, Kathi Rolls';
+          restaurants = 'Oh! Calcutta (₹700)';
+          transportCost = transport === 'Public Transportation' ? '₹80' : transport === 'Cabs' ? '₹350' : '₹200 (fuel)';
+        } else{
+          dishes = 'Fine dining Bengali cuisine';
+          restaurants = 'Peter Cat (₹1800)';
+          transportCost = transport === 'Public Transportation' ? '₹150' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        }
+      } else if(city === 'Chennai'){
+        sightseeing = 'Marina Beach, Kapaleeshwarar Temple, Fort St. George';
+        if(budget === 'Low'){
+          dishes = 'Idli, Dosa';
+          restaurants = 'Local street food (₹100)';
+          transportCost = transport === 'Public Transportation' ? '₹30' : transport === 'Cabs' ? '₹200' : '₹80 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Chettinad Chicken, Dosa';
+          restaurants = 'Annalakshmi (₹600)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹150 (fuel)';
+        } else{
+          dishes = 'Gourmet South Indian cuisine';
+          restaurants = 'The Marina (₹1500)';
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹250 (fuel)';
+        }
+      } else if(city === 'Bangalore'){
+        sightseeing = 'Lalbagh, Bangalore Palace, Cubbon Park';
+        if(budget === 'Low'){
+          dishes = 'Vada, Bisi Bele Bath';
+          restaurants = 'Local joints (₹150)';
+          transportCost = transport === 'Public Transportation' ? '₹40' : transport === 'Cabs' ? '₹250' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Masala Dosa, Filter Coffee';
+          restaurants = 'MTR (₹800)';
+          transportCost = transport === 'Public Transportation' ? '₹80' : transport === 'Cabs' ? '₹350' : '₹200 (fuel)';
+        } else{
+          dishes = 'Gourmet fusion';
+          restaurants = 'The Only Place (₹1800)';
+          transportCost = transport === 'Public Transportation' ? '₹150' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        }
+      } else if(city === 'Hyderabad'){
+        sightseeing = 'Charminar, Golconda Fort, Hussain Sagar';
+        if(budget === 'Low'){
+          dishes = 'Biryani, Kebabs';
+          restaurants = 'Local eateries (₹200)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Hyderabadi Biryani deluxe';
+          restaurants = 'Paradise (₹900)';
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        } else{
+          dishes = 'Exquisite Hyderabadi cuisine';
+          restaurants = 'Adaa (₹2500)';
+          transportCost = transport === 'Public Transportation' ? '₹200' : transport === 'Cabs' ? '₹800' : '₹500 (fuel)';
+        }
+      } else if(city === 'Jaipur'){
+        sightseeing = 'Amber Fort, Hawa Mahal, City Palace';
+        if(budget === 'Low'){
+          dishes = 'Dal Baati Churma';
+          restaurants = 'Local dhabas (₹150)';
+          transportCost = transport === 'Public Transportation' ? '₹40' : transport === 'Cabs' ? '₹250' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Rajasthani Thali';
+          restaurants = "Laxmi Mishtan Bhandar (₹700)";
+          transportCost = transport === 'Public Transportation' ? '₹80' : transport === 'Cabs' ? '₹350' : '₹200 (fuel)';
+        } else{
+          dishes = 'Royal Rajasthani cuisine';
+          restaurants = 'Suvarna Mahal (₹2000)';
+          transportCost = transport === 'Public Transportation' ? '₹150' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        }
+      } else if(city === 'Pune'){
+        sightseeing = 'Shaniwar Wada, Aga Khan Palace, Sinhagad Fort';
+        if(budget === 'Low'){
+          dishes = 'Misal Pav, Vada Pav';
+          restaurants = 'Local vendors (₹150)';
+          transportCost = transport === 'Public Transportation' ? '₹40' : transport === 'Cabs' ? '₹250' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Pav Bhaji, Bhel Puri';
+          restaurants = 'German Bakery (₹800)';
+          transportCost = transport === 'Public Transportation' ? '₹80' : transport === 'Cabs' ? '₹350' : '₹200 (fuel)';
+        } else{
+          dishes = 'Contemporary Indian dishes';
+          restaurants = 'Shizusan (₹1800)';
+          transportCost = transport === 'Public Transportation' ? '₹150' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        }
+      } else if(city === 'Ahmedabad'){
+        sightseeing = 'Sabarmati Ashram, Kankaria Lake, Jama Masjid';
+        if(budget === 'Low'){
+          dishes = 'Dhokla, Fafda';
+          restaurants = 'Local stalls (₹100)';
+          transportCost = transport === 'Public Transportation' ? '₹30' : transport === 'Cabs' ? '₹200' : '₹80 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Khichdi, Thepla';
+          restaurants = 'Maniben (₹700)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹150 (fuel)';
+        } else{
+          dishes = 'Gourmet Gujarati cuisine';
+          restaurants = 'Agashiye (₹1800)';
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹250 (fuel)';
+        }
+      } else if(city === 'Goa'){
+        sightseeing = 'Beaches, Old Goa Churches, Fort Aguada';
+        if(budget === 'Low'){
+          dishes = 'Fish Thali, Prawn Curry';
+          restaurants = 'Beach shacks (₹200)';
+          transportCost = transport === 'Public Transportation' ? '₹50' : transport === 'Cabs' ? '₹300' : '₹100 (fuel)';
+        } else if(budget === 'Medium'){
+          dishes = 'Seafood Specialties';
+          restaurants = 'Local restaurants (₹900)';
+          transportCost = transport === 'Public Transportation' ? '₹100' : transport === 'Cabs' ? '₹500' : '₹300 (fuel)';
+        } else{
+          dishes = 'Exquisite Seafood';
+          restaurants = "Martin's (₹2200)";
+          transportCost = transport === 'Public Transportation' ? '₹200' : transport === 'Cabs' ? '₹800' : '₹500 (fuel)';
+        }
+      } else {
+        sightseeing = 'Explore the attractions of ' + city;
+        dishes = 'Try the local specialties';
+        restaurants = 'Various dining options available';
+        transportCost = transport === 'Public Transportation' ? '₹70' : transport === 'Cabs' ? '₹400' : '₹150 (fuel)';
+      }
+      
+      result += `
+        <p><strong>Sightseeing Places:</strong> ${sightseeing}</p>
+        <p><strong>Famous Dishes:</strong> ${dishes}</p>
+        <p><strong>Recommended Restaurants:</strong> ${restaurants}</p>
+        <p><strong>Transportation Cost:</strong> ${transportCost}</p>
+      `;
+      document.getElementById('results').innerHTML = result;
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Discover India Logo">
+    <h1>Discover India - Your Way</h1>
+  </header>
+  <main>
+    <h2>Plan Your Trip</h2>
+    <label for="city">Select a City:</label>
+    <select id="city">
+      <option value="Delhi">Delhi</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Kolkata">Kolkata</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Bangalore">Bangalore</option>
+      <option value="Hyderabad">Hyderabad</option>
+      <option value="Jaipur">Jaipur</option>
+      <option value="Pune">Pune</option>
+      <option value="Ahmedabad">Ahmedabad</option>
+      <option value="Goa">Goa</option>
+    </select>
+    <label for="budget">Select Budget Range:</label>
+    <select id="budget">
+      <option value="Low">Low (₹0-₹5000)</option>
+      <option value="Medium">Medium (₹5000-₹10000)</option>
+      <option value="High">High (₹10000+)</option>
+    </select>
+    <label for="transport">Mode of Transport:</label>
+    <select id="transport">
+      <option value="Public Transportation">Public Transportation</option>
+      <option value="Cabs">Cabs</option>
+      <option value="Own Car">Own Car</option>
+    </select>
+    <button onclick="showResults()">Show Results</button>
+    <div id="results" class="results"></div>
+    
+    <section class="section video-section">
+      <h2>Watch Our Travel Video</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/rTDaZoDDW5g" title="India Travel Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    
+    <section class="section contact-section">
+      <h2>Contact Us</h2>
+      <form id="contactForm" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
